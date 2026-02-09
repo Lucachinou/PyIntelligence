@@ -2,10 +2,13 @@ import os
 import subprocess
 
 def get_shortcuts():
-    script = 'tell application "Shortcuts" to get name of every shortcut'
-    os.system(f"osascript -e '{script}'")
+    shortcuts = os.system(f"osascript -e 'tell application \"Shortcuts\" to get name of every shortcut'")
+    return shortcuts
 
 def use_model(texte, shortcut: str="use_a_model"):
+    if not shortcut in get_shortcuts():
+        print("Shortcut not found!")
+
     try:
         processus = subprocess.run(
             ["shortcuts", "run", shortcut],
