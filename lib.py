@@ -6,9 +6,6 @@ def get_shortcuts():
     return shortcuts
 
 def use_model(texte, shortcut: str="use_a_model"):
-    if not shortcut in get_shortcuts():
-        print("Shortcut not found!")
-
     try:
         processus = subprocess.run(
             ["shortcuts", "run", shortcut],
